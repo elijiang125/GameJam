@@ -161,10 +161,14 @@ group = SubResource( 1 )
 action = "back"
 
 [node name="Quit" type="Button" parent="."]
-margin_left = 512.0
-margin_top = 500.0
-margin_right = 612.0
-margin_bottom = 540.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -37.5
+margin_top = -120.0
+margin_right = 37.5
+margin_bottom = -45.0
 text = "Quit"
 
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
