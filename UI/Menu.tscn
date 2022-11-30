@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UI/Menu.gd" type="Script" id=1]
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=2]
 
 [node name="Menu" type="Control"]
 pause_mode = 2
@@ -15,9 +16,10 @@ color = Color( 0, 0, 0, 0.752941 )
 
 [node name="Quit" type="Button" parent="."]
 margin_left = 462.0
-margin_top = 500.0
+margin_top = 440.0
 margin_right = 562.0
 margin_bottom = 540.0
-text = "Quit Game"
+theme = ExtResource( 2 )
+text = "Quit"
 
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

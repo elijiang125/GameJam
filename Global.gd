@@ -16,9 +16,11 @@ func _unhandled_input(_event):
 			menu = get_node_or_null("/root/Game/UI/Menu")
 		if menu != null:
 			if not menu.visible:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				get_tree().paused = true
 				menu.show()
 			else:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				save_input()
 				get_tree().paused = false
 				menu.hide()
