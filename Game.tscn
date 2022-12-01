@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Key/key.tscn" type="PackedScene" id=2]
@@ -14,6 +14,11 @@
 [ext_resource path="res://Player/Muzzle.tres" type="Material" id=12]
 [ext_resource path="res://Player/Flash.gd" type="Script" id=13]
 [ext_resource path="res://Assets/photos_2016_1_26_fst_8126d235ec9-0649-433c-b050-b299429e2fb6.png" type="Texture" id=14]
+[ext_resource path="res://Key/pizza.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Key/sausage.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Key/loaf.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Key/cheese.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Key/tomato.tscn" type="PackedScene" id=19]
 
 [sub_resource type="SpatialMaterial" id=13]
 albedo_texture = ExtResource( 3 )
@@ -46,7 +51,12 @@ points = PoolVector3Array( 50, 3, 0.5, 50, 3, -0.5, -50, 3, 0.5, 50, -3, 0.5, 50
 [sub_resource type="ConvexPolygonShape" id=9]
 points = PoolVector3Array( 50, 3, 0.5, 50, 3, -0.5, -50, 3, 0.5, 50, -3, 0.5, 50, -3, -0.5, -50, 3, -0.5, -50, -3, 0.5, -50, -3, -0.5 )
 
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.317647, 0.282353, 0.282353, 1 )
+albedo_texture = ExtResource( 14 )
+
 [sub_resource type="CubeMesh" id=10]
+material = SubResource( 15 )
 size = Vector3( 1, 6, 50 )
 
 [sub_resource type="ConvexPolygonShape" id=11]
@@ -54,6 +64,17 @@ points = PoolVector3Array( -0.5, -3, -25, 0.5, -3, -25, -0.5, -3, 25, -0.5, 3, -
 
 [sub_resource type="ConvexPolygonShape" id=12]
 points = PoolVector3Array( -0.5, -3, -25, 0.5, -3, -25, -0.5, -3, 25, -0.5, 3, -25, 0.5, 3, -25, 0.5, -3, 25, -0.5, 3, 25, 0.5, 3, 25 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.317647, 0.282353, 0.282353, 1 )
+albedo_texture = ExtResource( 14 )
+
+[sub_resource type="CubeMesh" id=17]
+material = SubResource( 16 )
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_color = Color( 0.317647, 0.282353, 0.282353, 1 )
+albedo_texture = ExtResource( 14 )
 
 [sub_resource type="CapsuleShape" id=4]
 radius = 0.5
@@ -89,9 +110,24 @@ shape = SubResource( 3 )
 [node name="key" parent="Maze" instance=ExtResource( 2 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -27.7614, 1.42471, -14.1597 )
 
+[node name="pizza" parent="Maze" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13676, 8.96423 )
+
+[node name="sausage" parent="Maze" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01984, 6.81898 )
+
+[node name="loaf" parent="Maze" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14205, 5.11476 )
+
+[node name="cheese" parent="Maze" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89419, 4.0938 )
+
+[node name="tomato" parent="Maze" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02026, 2.95008 )
+
 [node name="Walls" type="StaticBody" parent="Maze"]
 
-[node name="MeshInstance" type="MeshInstance" parent="Maze/Walls"]
+[node name="OutsideWall1" type="MeshInstance" parent="Maze/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 25 )
 mesh = SubResource( 7 )
 
@@ -99,7 +135,7 @@ mesh = SubResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 25 )
 shape = SubResource( 8 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="Maze/Walls"]
+[node name="OutsideWall2" type="MeshInstance" parent="Maze/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -25 )
 mesh = SubResource( 7 )
 
@@ -107,7 +143,7 @@ mesh = SubResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -25 )
 shape = SubResource( 9 )
 
-[node name="MeshInstance3" type="MeshInstance" parent="Maze/Walls"]
+[node name="OutsideWall3" type="MeshInstance" parent="Maze/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 3, 0 )
 mesh = SubResource( 10 )
 
@@ -115,13 +151,18 @@ mesh = SubResource( 10 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 3, 0 )
 shape = SubResource( 11 )
 
-[node name="MeshInstance4" type="MeshInstance" parent="Maze/Walls"]
+[node name="OutsideWall4" type="MeshInstance" parent="Maze/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 3, 0 )
 mesh = SubResource( 10 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="Maze/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 3, 0 )
 shape = SubResource( 12 )
+
+[node name="HouseWall" type="CSGMesh" parent="Maze/Walls"]
+transform = Transform( 1, 0, 0, 0, 3.3, 0, 0, 0, 1, -36.5125, 3.29621, 3.94069 )
+mesh = SubResource( 17 )
+material = SubResource( 18 )
 
 [node name="Enemies" type="Spatial" parent="Maze"]
 script = ExtResource( 9 )

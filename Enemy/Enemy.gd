@@ -2,7 +2,7 @@ extends KinematicBody
 
 var Player = null
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Player == null:
 		Player = get_node_or_null("/root/Game/Player")
 	if Player != null:
