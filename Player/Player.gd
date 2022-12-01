@@ -7,11 +7,16 @@ var max_speed = 8
 var mouse_sensitivity = 0.002
 var mouse_range = 1.2
 
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Pivot/Camera.current = true
+	$Pivot/Camera/Crosshair.hide()
 
 var velocity = Vector3()
+var to_pickup = null
+
+onready var Guns = get_node("/root/Game/Guns")
 
 onready var rc = $Pivot/RayCast
 onready var flash = $Pivot/Blaster/Flash
@@ -45,12 +50,41 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3.UP, true)
 	
 	if Input.is_action_pressed("shoot"):
-		flash.shoot()
-		if rc.is_colliding():
-			var c = rc.get_collider()
-			var decal = Decal.instance() 
-			rc.get_collider().add_child(decal)
-			decal.global_transform.origin = rc.get_collision_point()
-			decal.look_at(rc.get_collision_point() + rc.get_collision_normal(), Vector3.UP)
-			if c.is_in_group("Enemy"):
-				c.queue_free()
+		shoot()
+		
+	if Input.is_action_pressed("pickup"):
+		pickup()
+	
+
+func shoot(): #new code
+	var gun = get_node_or_null("Pivot/Gun") #nerf gun, image will be for later, please check
+	if gun != null and gun.has_method("shoot"):
+		gun.shoot()
+		
+func pickup():
+	var gun = get_node_or_null("Pivot/Gun")
+	if gun != null:
+		var to_drop = gun.Pickup.instance()
+		Guns.add_child(to_drop)
+		to_drop.global_transform.origin = global_transform.origin + Vector3(0, 1.5, 0)
+		var throw = Vector3.ZERO
+		throw += -Camera.global_transform.basis.z * 8.0
+		throw += -Camera.global_transform.basis.y * 0.5
+		to_drop.apply_central_impulse(throw)
+		gun.queue_free()
+		$Pivot/Camera/Crosshair.show()
+	elif to_pickup != null:
+		gun = to_pickup.Pickup.instance()
+		gun.name = "Nerf Gun"
+		$Pivot.add_child(gun)
+		$Pivot/Camera/Crosshair.show()
+		to_pickup.queue_free()
+
+
+func _on_Area_body_entered(body): 
+	if body.is_in_group("Guns"):
+		to_pickup = body
+
+
+func _on_Area_body_exited(body):
+	to_pickup = null
