@@ -11,7 +11,7 @@ var mouse_range = 1.2
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Pivot/Camera.current = true
-	$Pivot/Camera/Crosshair.hide()
+	#$Pivot/Camera/Crosshair.hide()
 
 var velocity = Vector3()
 var to_pickup = null
