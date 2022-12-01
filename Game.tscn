@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=41 format=2]
+
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Key/key.tscn" type="PackedScene" id=2]
@@ -13,6 +15,7 @@
 [ext_resource path="res://Assets/muzzleflash.obj" type="ArrayMesh" id=11]
 [ext_resource path="res://Player/Muzzle.tres" type="Material" id=12]
 [ext_resource path="res://Player/Flash.gd" type="Script" id=13]
+
 [ext_resource path="res://Assets/photos_2016_1_26_fst_8126d235ec9-0649-433c-b050-b299429e2fb6.png" type="Texture" id=14]
 [ext_resource path="res://Key/pizza.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Key/sausage.tscn" type="PackedScene" id=16]
@@ -26,6 +29,7 @@
 [sub_resource type="SpatialMaterial" id=13]
 albedo_texture = ExtResource( 3 )
 roughness = 0.62
+
 
 [sub_resource type="PlaneMesh" id=1]
 material = SubResource( 13 )
@@ -499,7 +503,11 @@ stream = ExtResource( 5 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Menu" parent="." instance=ExtResource( 4 )]
+
+[node name="HUD" parent="UI" instance=ExtResource( 14 )]
+
+[node name="Menu" parent="UI" instance=ExtResource( 4 )]
+
 visible = false
 
 [connection signal="timeout" from="Player/Pivot/Blaster/Flash/Timer" to="Player/Pivot/Blaster/Flash" method="_on_Timer_timeout"]

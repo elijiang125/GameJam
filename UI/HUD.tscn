@@ -1,0 +1,155 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Assets/crosshair002.png" type="Texture" id=3]
+[ext_resource path="res://Assets/BERNHC.TTF" type="DynamicFontData" id=4]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 150.0
+margin_bottom = 200.0
+color = Color( 0.215686, 0.215686, 0.215686, 0.392157 )
+
+[node name="Label" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -42.0
+margin_top = 10.0
+margin_right = 42.0
+margin_bottom = 22.0
+text = "Ingredients:"
+
+[node name="Dough" type="CheckBox" parent="ColorRect"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 5.0
+margin_top = -60.0
+margin_right = -5.0
+margin_bottom = -28.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Dough"
+
+[node name="Sauce" type="CheckBox" parent="ColorRect"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 5.0
+margin_top = -20.0
+margin_right = -5.0
+margin_bottom = 12.0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Sauce"
+
+[node name="Cheese" type="CheckBox" parent="ColorRect"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 5.0
+margin_top = 20.0
+margin_right = -5.0
+margin_bottom = 52.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Cheese"
+
+[node name="Meat" type="CheckBox" parent="ColorRect"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 5.0
+margin_top = 60.0
+margin_right = -5.0
+margin_bottom = 92.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Meat"
+
+[node name="Crosshair" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.588235 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+
+[node name="TimerColorRect" type="ColorRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_bottom = 50.0
+color = Color( 0.215686, 0.215686, 0.215686, 0.392157 )
+
+[node name="Time" type="Label" parent="TimerColorRect"]
+margin_left = 5.0
+margin_right = 95.0
+margin_bottom = 50.0
+valign = 1
+
+[node name="MessageColorRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.133333, 0.133333, 0.588235 )
+
+[node name="Message" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -393.0
+margin_top = -12.5
+margin_right = 393.0
+margin_bottom = 12.5
+custom_fonts/font = SubResource( 7 )
+text = "\"I need the ingredients to make pizza for dinner tonight. Bring them to the table, but make it quick!\""
+
+[node name="MessageTimer" type="Timer" parent="Message"]
+pause_mode = 2
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Message/MessageTimer" to="." method="_on_MessageTimer_timeout"]
